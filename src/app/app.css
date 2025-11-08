@@ -1,0 +1,243 @@
+/* =========================
+   Global Theme Variables
+   ========================= */
+:root {
+  --bg: #e7eef9;           /* soft light blue background */
+  --panel: #ffffff;        /* bright white panels */
+  --text: #111827;         /* darker text for readability */
+  --muted: #475569;        /* medium gray text */
+  --accent: #1e64f0;       /* vivid blue */
+  --accent-2: #144ab3;     /* deeper blue for hover */
+  --border: #cfd8eb;       /* light border */
+}
+
+/* =========================
+   Base Layout
+   ========================= */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+
+  /* stronger blue gradient background */
+  background: linear-gradient(180deg, #d7e6ff 0%, #f0f6ff 60%, #ffffff 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Decorative glowing shapes */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.55;
+  z-index: -1;
+  animation: float 14s ease-in-out infinite alternate;
+}
+body::before {
+  top: -180px;
+  left: -180px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(67,139,255,0.4) 0%, transparent 70%);
+}
+body::after {
+  bottom: -220px;
+  right: -220px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at center, rgba(155,175,255,0.35) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(18px); }
+}
+
+/* =========================
+   Header / Footer  (contrast boosted)
+   ========================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(90deg, #1b57e5, #1344b3); /* darker, clearer */
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.brand {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.3px;
+  margin-right: auto;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+.nav a {
+  color: #ffffff;                   /* pure white for readability */
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35); /* extra contrast */
+  transition: background .2s ease, color .2s ease;
+}
+.nav a:hover { background: rgba(255,255,255,0.22); }
+.nav a.active {
+  background: #ffffff;
+  color: #1b57e5;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.main { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+footer {
+  max-width: 1100px;
+  margin: 40px auto 24px;
+  padding: 16px 20px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+/* =========================
+   Cards / Sections
+   ========================= */
+.section { margin-top: 32px; }
+.section h2 { margin: 0 0 14px; }
+
+.card {
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 26px;
+  border: 1px solid rgba(180,195,230,0.8);
+  box-shadow: 0 6px 20px rgba(30,100,240,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(30,100,240,0.25);
+}
+
+.hr { height: 1px; background: var(--border); margin: 18px 0; }
+.lead { font-size: 18px; color: var(--muted); }
+
+/* Grid layouts */
+.grid, .grid-2, .grid-3 { display: grid; gap: 18px; }
+.grid   { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* =========================
+   Hero Section (title darker)
+   ========================= */
+.hero {
+  background: linear-gradient(135deg, #e4edff 0%, #ffffff 100%);
+  border-radius: 22px;
+  padding: 50px 30px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(30,100,240,0.15);
+}
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 44px;
+  font-weight: 800;
+  color: #0f285f;  /* darker for stronger visibility */
+}
+.hero .sub {
+  color: var(--muted);
+  margin: 0 0 22px;
+  font-size: 18px;
+}
+
+/* =========================
+   Buttons (completed & higher contrast)
+   ========================= */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.06s ease, background 0.15s ease;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(30,100,240,0.3);
+}
+.btn-primary:hover {
+  background: var(--accent-2);
+  box-shadow: 0 4px 12px rgba(30,100,240,0.45);
+}
+.btn-outline {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid #9db3e3; /* darker border so it stands out */
+}
+.btn-outline:hover { background: #f0f4ff; }
+
+/* ✅ your original file was cut off here — this completes it */
+.btn-ghost {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: #f3f6fb; }
+
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
+
+
+
+body {
+  background: linear-gradient(180deg, #cfdcff 0%, #e4ecff 40%, #f6f8ff 100%);
+}
+.card {
+  box-shadow: 0 8px 20px rgba(25, 92, 255, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 32px rgba(25, 92, 255, 0.25);
+}
+
+.btn-primary {
+  background: var(--accent);
+  box-shadow: 0 4px 12px rgba(25, 92, 255, 0.35);
+}
+.btn-primary:hover {
+  background: var(--accent-2);
+  box-shadow: 0 6px 16px rgba(25, 92, 255, 0.5);
+}
+
+
+/* Initial hidden state */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When element is visible */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
