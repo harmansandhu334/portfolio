@@ -1,16 +1,65 @@
 <header class="header">
-  <nav class="nav">
-    <div class="brand">Harmandeep Singh</div>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-    <a routerLink="/projects" routerLinkActive="active">Projects</a>
-    <a routerLink="/experience" routerLinkActive="active">Experience</a>
-    <a routerLink="/resume" routerLinkActive="active">Resume</a>
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
-  </nav>
+  <mat-toolbar color="primary" class="nav">
+    <div class="brand">
+      <mat-icon>person</mat-icon>
+      {{ appTitle | titlePrefix:'Developer' | titlecase }}
+    </div>
+
+    <span class="spacer"></span>
+
+    <a
+      mat-button
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      appHoverHighlight
+    >
+      {{ 'home' | titlecase }}
+    </a>
+
+    <a
+      mat-button
+      routerLink="/projects"
+      routerLinkActive="active"
+      appHoverHighlight
+    >
+      {{ 'projects' | titlecase }}
+    </a>
+
+    <a
+      mat-button
+      routerLink="/experience"
+      routerLinkActive="active"
+      appHoverHighlight
+    >
+      {{ 'experience' | titlecase }}
+    </a>
+
+    <a
+      mat-button
+      routerLink="/resume"
+      routerLinkActive="active"
+      appHoverHighlight
+    >
+      {{ 'resume' | titlecase }}
+    </a>
+
+    <a
+      mat-button
+      routerLink="/contact"
+      routerLinkActive="active"
+      appHoverHighlight
+    >
+      {{ 'contact' | titlecase }}
+    </a>
+  </mat-toolbar>
 </header>
 
 <main class="main">
   <router-outlet></router-outlet>
 </main>
 
-<footer>© 2025 Harmandeep Singh • Built with Angular</footer>
+<footer>
+  © {{ currentYear }} {{ appTitle }} · Last updated
+  {{ today | date : 'longDate' }}
+</footer>
