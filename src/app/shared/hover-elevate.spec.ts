@@ -1,8 +1,8 @@
-import { HoverElevate } from './hover-elevate';
+import { HoverElevateDirective} from './hover-elevate';
 
 describe('HoverElevate', () => {
   it('should create an instance', () => {
-    const directive = new HoverElevate();
+    const directive = new HoverElevateDirective();
     expect(directive).toBeTruthy();
   });
 });
